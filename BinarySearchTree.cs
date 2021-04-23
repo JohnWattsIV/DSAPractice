@@ -16,14 +16,13 @@ public class BinarySearchTree
         public TreeNode right {get; set;}
     }
 
-    TreeNode root;
+    public TreeNode root;
 
     public BinarySearchTree()
     {
         root = null;
     }
 
-    //TODO: METHODS
     //insert value into tree (assuming valid input)
     public void insertNode(int value)
     {
@@ -64,7 +63,17 @@ public class BinarySearchTree
             }
         }
     }
+
     //get count of values stored
+    public int treeSum(TreeNode node)
+    {
+        if (node == null)
+        {
+            return 0;
+        }
+
+        return node.value + treeSum(node.left) + treeSum(node.right);
+    }
     //print values in tree from min to max
     //delete tree
     //return true if value exists in tree

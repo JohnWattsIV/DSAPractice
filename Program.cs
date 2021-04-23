@@ -19,6 +19,9 @@ namespace DSAPractice
             newTree.insertNode(14);
             newTree.insertNode(13);
             newTree.insertNode(29);
+
+            //BinarySearchTree sum test
+            Console.WriteLine(newTree.treeSum(newTree.root));
         }
     }
 }
