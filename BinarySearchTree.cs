@@ -1,20 +1,13 @@
-class BinarySearchTree
+using System;
+
+public class BinarySearchTree
 {   
     public class TreeNode
     {
-        public TreeNode(int item, TreeNode par)
+        public TreeNode(int item)
         {
             value = item;
-            parent = par;
-            left = right = null;
-        }
-
-        public TreeNode(int item, TreeNode par, TreeNode le, TreeNode ri)
-        {
-            value = item;
-            parent = par;
-            left = le;
-            right = ri;
+            parent = left = right = null;
         }
 
         public int value {get; set;}
@@ -25,13 +18,52 @@ class BinarySearchTree
 
     TreeNode root;
 
-    BinarySearchTree()
+    public BinarySearchTree()
     {
         root = null;
     }
 
     //TODO: METHODS
-    //insert value into tree
+    //insert value into tree (assuming valid input)
+    public void insertNode(int value)
+    {
+        TreeNode newNode = new TreeNode(value);
+        
+        if (root == null)
+        {
+            root = newNode;
+            Console.WriteLine("Successfully inserted " + newNode.value + " as root");
+            return;
+        }
+
+        TreeNode currNode = root;
+
+        while (true)
+        {
+            if (currNode.left == null && newNode.value < currNode.value)
+            {
+                currNode.left = newNode;
+                newNode.parent = currNode;
+                Console.WriteLine("Successfully inserted " + newNode.value + " as left child of " + currNode.value);
+                return;
+            }
+            else if (currNode.right == null && newNode.value > currNode.value)
+            {
+                currNode.right = newNode;
+                newNode.parent = currNode;
+                Console.WriteLine("Successfully inserted " + newNode.value + " as right child of " + currNode.value);
+                return;                
+            }
+            else if (currNode.left != null && newNode.value < currNode.value)
+            {
+                currNode = currNode.left;
+            }
+            else if (currNode.right != null && newNode.value > currNode.value)
+            {
+                currNode = currNode.right;
+            }
+        }
+    }
     //get count of values stored
     //print values in tree from min to max
     //delete tree
