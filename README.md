@@ -1,6 +1,6 @@
-#Data Structures and Algorithms Practice
+Data Structures and Algorithms Practice
 
-#Binary Search Trees
+Binary Search Trees
 
 -Functions implemented and explanations
   -
