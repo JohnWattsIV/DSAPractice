@@ -75,14 +75,39 @@ public class BinarySearchTree
         return node.value + treeSum(node.left) + treeSum(node.right);
     }
     //print values in tree from min to max
-    //delete tree
-    //return true if value exists in tree
+    public void printInOrder(TreeNode node)
+    {
+        if(node == null)
+        {
+            return;
+        }
+
+        printInOrder(node.left);
+        Console.WriteLine(node.value);
+        printInOrder(node.right);
+    }
+
     //return height in nodes (single node height is 1)
+    public int getNodeHeight(TreeNode node)
+    {
+        return treeHeightCalc(node, 0);
+    }
+
+    private int treeHeightCalc(TreeNode node, int height)
+    {
+        int hi = height;
+        if (node != null)
+            hi++;
+        else if(node == null)
+            return hi;
+
+        return Math.Max(treeHeightCalc(node.left, hi), treeHeightCalc(node.right, hi));
+    }
     //return minimum value stored in the tree
     //return maximum value stored in the tree
     //delete value in tree
     //return next heighest value in tree after given value, -1 if none
-    //BFS
-    //DFS: inorder, postorder, preorder
+    //Search BFS
+    //Search DFS: inorder, postorder, preorder
 
 }

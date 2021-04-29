@@ -8,6 +8,7 @@ namespace DSAPractice
         {
             
             //BinarySearchTree Insert Test
+            Console.WriteLine("Insert nodes: ");
             BinarySearchTree newTree = new BinarySearchTree();
             newTree.insertNode(8);
             newTree.insertNode(3);
@@ -19,9 +20,20 @@ namespace DSAPractice
             newTree.insertNode(14);
             newTree.insertNode(13);
             newTree.insertNode(29);
+            Console.WriteLine();
 
             //BinarySearchTree sum test
-            Console.WriteLine(newTree.treeSum(newTree.root));
+            Console.WriteLine("Sum of values in tree: " + newTree.treeSum(newTree.root));
+            Console.WriteLine();
+
+            //BinarySearchTree inorder traversal test
+            Console.WriteLine("InOrder traversal:");
+            newTree.printInOrder(newTree.root);
+            Console.WriteLine();
+
+            //BinarySearchTree print tree height at any node test
+            Console.WriteLine("Tree height: " + newTree.getNodeHeight(newTree.root));
+            Console.WriteLine();
         }
     }
 }
