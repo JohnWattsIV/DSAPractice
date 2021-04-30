@@ -169,7 +169,7 @@ public class BinarySearchTree
         }
         else if(currNode.left != null && currNode.right != null)
         {
-            TreeNode succ = getTreeMin(currNode.right);
+            TreeNode succ = getSuccessor(currNode);
 
             Console.WriteLine(currNode.value + " successfully deleted."); 
             currNode.value = succ.value;
@@ -193,8 +193,35 @@ public class BinarySearchTree
         }
     }
 
-    //return next heighest value in tree after given value, -1 if none
+    //return next highest value in tree after given value, -1 if none
+    public TreeNode getSuccessor(TreeNode node)
+    {
+        return getTreeMin(node.right);
+    }
+
+    //return next lowest value in tree after given value, -1 if none
+    public TreeNode getPredecessor(TreeNode node)
+    {
+        return getTreeMax(node.left);
+    }
     //Search BFS
+    public bool searchInOrder(TreeNode node, int val)
+    {
+        if(node == null)
+            return false;
+
+        if(node.value == val)
+            return true;
+
+        bool leftSide = searchInOrder(node.left, val);
+
+        if(leftSide)
+            return true;
+
+        bool rightSide = searchInOrder(node.right, val);
+
+        return rightSide;
+    }
     //Search DFS: inorder, postorder, preorder
 
 }
