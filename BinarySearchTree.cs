@@ -103,9 +103,96 @@ public class BinarySearchTree
 
         return Math.Max(treeHeightCalc(node.left, hi), treeHeightCalc(node.right, hi));
     }
+
     //return minimum value stored in the tree
+    public TreeNode getTreeMin(TreeNode node)
+    {
+        TreeNode currNode = node;
+
+        while(currNode.left != null)
+        {
+            currNode = currNode.left;
+        }
+        
+        return currNode;
+    }
+
     //return maximum value stored in the tree
+    public TreeNode getTreeMax(TreeNode node)
+    {
+        TreeNode currNode = node;
+
+        while(currNode.right != null)
+        {
+            currNode = currNode.right;
+        }
+        
+        return currNode;
+    }
+
     //delete value in tree
+    public void deleteNode(BinarySearchTree tree, int deleteVal)
+    {
+        TreeNode currNode = tree.root;
+        TreeNode prevNode = null;
+
+        while(currNode.value != deleteVal && (currNode.left != null || currNode.right != null))
+        {
+            if(currNode.value < deleteVal)
+            {
+                prevNode = currNode;
+                currNode = currNode.right;
+            }
+            else if(currNode.value > deleteVal)
+            {
+                prevNode = currNode;
+                currNode = currNode.left;
+            }
+        }
+
+        if(currNode.value != deleteVal)
+        {
+            Console.WriteLine("Value specified does not exist in the tree.");
+        }
+        else if(currNode.left == null && currNode.right == null)
+        {
+            if(currNode.value < prevNode.value)
+            {
+                prevNode.left = null;
+                Console.WriteLine(currNode.value + " successfully deleted.");                
+            }
+            else
+            {
+                prevNode.right = null;
+                Console.WriteLine(currNode.value + " successfully deleted.");      
+            }
+        }
+        else if(currNode.left != null && currNode.right != null)
+        {
+            TreeNode succ = getTreeMin(currNode.right);
+
+            Console.WriteLine(currNode.value + " successfully deleted."); 
+            currNode.value = succ.value;
+
+            deleteNode(tree, succ.value);
+        }
+        else
+        {
+            if(currNode.left != null)
+            {
+                Console.WriteLine(currNode.value + " successfully deleted.");    
+                currNode.value = currNode.left.value;
+                currNode.left = null;
+            }
+            else
+            {
+                Console.WriteLine(currNode.value + " successfully deleted.");    
+                currNode.value = currNode.right.value;
+                currNode.right = null;
+            }
+        }
+    }
+
     //return next heighest value in tree after given value, -1 if none
     //Search BFS
     //Search DFS: inorder, postorder, preorder

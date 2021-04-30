@@ -7,7 +7,7 @@ namespace DSAPractice
         static void Main(string[] args)
         {
             
-            //BinarySearchTree Insert Test
+            //BinarySearchTree insert test
             Console.WriteLine("Insert nodes: ");
             BinarySearchTree newTree = new BinarySearchTree();
             newTree.insertNode(8);
@@ -34,6 +34,13 @@ namespace DSAPractice
             //BinarySearchTree print tree height at any node test
             Console.WriteLine("Tree height: " + newTree.getNodeHeight(newTree.root));
             Console.WriteLine();
+
+            //BinarySearchTree delete node test
+            newTree.deleteNode(newTree, 7);
+            newTree.printInOrder(newTree.root);
+
+            newTree.deleteNode(newTree, 1);
+            newTree.printInOrder(newTree.root);
         }
     }
 }
